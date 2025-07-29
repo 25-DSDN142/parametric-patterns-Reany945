@@ -1,94 +1,90 @@
-let characterSize = 80;
-let characterStrokeWeight = 2;
+let Role = 80;
+let lineThickness = 2;
+        
+let mainColorR = 150;   
+let mainColorG = 200;
+let mainColorB = 255;
 
-let patternDensity = 1.0;
+let densityFactor = 1.0;
 
-let characterBodyHue = 220;
-let characterBodySaturation = 70;
-let characterBodyBrightness = 80;
+let eyeColorR = 255;
+let eyeColorG = 255;
+let eyeColorB = 255;
 
-let eyeHue = 0;
-let eyeSaturation = 0;
-let eyeBrightness = 100;
+let mouthColorR = 255;
+let mouthColorG = 0;
+let mouthColorB = 0;
 
-let mouthHue = 0;
-let mouthSaturation = 100;
-let mouthBrightness = 100;
+let backgroundColorR = 50;
+let backgroundColorG = 76;
+let backgroundColorB = 168;
 
-let backgroundHue = 200;
-let backgroundSaturation = 80;
-let backgroundBrightness = 70;
+let characterStyle = 0;
 
-let mouthStyle = 0;
-
-let earSizeFactor = 0.5;
-
+let earScaleFactor = 1.0;
+let eyeSizeFactor = 2.0;
 
 function setup() {
-    createCanvas(2000, 1000);
-    colorMode(HSB, 360, 100, 100);
-    noStroke();
-    noLoop();
+createCanvas(2000, 1000);
+colorMode(RGB, 255);
+noStroke();
+noLoop();
 }
 
 function draw() {
-    background(backgroundHue, backgroundSaturation, backgroundBrightness);
+background(backgroundColorR, backgroundColorG, backgroundColorB);
 
-    stroke(characterBodyHue, characterBodySaturation, characterBodyBrightness * 0.7);
-    strokeWeight(characterStrokeWeight);
+stroke(mainColorR - 50, mainColorG - 50, mainColorB - 50);
+strokeWeight(lineThickness);
 
-    let tileWidth = characterSize * patternDensity * 2.5;
-    let tileHeight = characterSize * patternDensity * 2.5;
+let tileWidth = Role * densityFactor * 2.5;
+let tileHeight = Role * densityFactor * 2.5;
 
-    for (let x = 0; x < width; x += tileWidth) {
-        for (let y = 0; y < height; y += tileHeight) {
-            push();
-
-            translate(x + tileWidth / 2, y + tileHeight / 2);
-
-            my_symbol(characterSize);
-
-            pop();
-        }
-    }
+for (let x = 0; x < width; x += tileWidth) {
+for (let y = 0; y < height; y += tileHeight) {
+push();
+translate(x + tileWidth / 2, y + tileHeight / 2);
+drawMyCharacter(Role);
+pop();
+}
+}
 }
 
+function drawMyCharacter(size) {
+let scaleFactor = size / 100;
+scale(scaleFactor);
 
-function my_symbol(size) {
-    let scaleFactor = size / 100;
-    scale(scaleFactor);
+fill(mainColorR, mainColorG, mainColorB);
+ellipse(0, 0, 120, 60);
 
-    fill(characterBodyHue, characterBodySaturation, characterBodyBrightness);
-    ellipse(0, 0, 120, 60);
+fill(mainColorR, mainColorG, mainColorB);
+triangle(60, 0, 100, -40, 90, 0);
+triangle(60, 0, 90, 20, 90, 0);
 
-    fill(characterBodyHue, characterBodySaturation, characterBodyBrightness);
-    triangle(60, 0, 100, -40, 90, 0);
-    triangle(60, 0, 90, 20, 90, 0);
+fill(mainColorR, mainColorG, mainColorB);
+triangle(-10, 30 * earScaleFactor, -22, 50 * earScaleFactor, 2, 50 * earScaleFactor);
 
-    fill(characterBodyHue, characterBodySaturation, characterBodyBrightness);
-    triangle(-10, 30 * earSizeFactor, -22, 50 * earSizeFactor, 2, 50 * earSizeFactor);
+fill(mainColorR, mainColorG, mainColorB);
+triangle(-60, 0, -100, -40 * earScaleFactor, -90, 0);
+triangle(-60, 0, -90, 20 * earScaleFactor, -90, 0);
 
-    fill(characterBodyHue, characterBodySaturation, characterBodyBrightness);
-    triangle(-60, 0, -100, -40 * earSizeFactor, -90, 0);
-    triangle(-60, 0, -90, 20 * earSizeFactor, -90, 0);
+fill(mouthColorR, mouthColorG, mouthColorB);
+if (characterStyle === 0) {
+arc(-20, 0, 20, 20, 0, PI, CHORD);
+} else if (characterStyle === 1) {
+rectMode(CENTER);
+rect(-20, 0, 15, 5);
+} else {
+arc(-20, 0, 20, 20, 0, PI, CHORD);
+}
 
-    fill(mouthHue, mouthSaturation, mouthBrightness);
-    if (mouthStyle === 0) {
-        arc(-20, 0, 20, 20, 0, PI, CHORD);
-    } else if (mouthStyle === 1) {
-        rectMode(CENTER);
-        rect(-20, 0, 15, 5);
-    } else {
-        arc(-20, 0, 20, 20, 0, PI, CHORD);
-    }
+fill(eyeColorR, eyeColorG, eyeColorB);
+ellipse(20, -20, 20 * eyeSizeFactor, 20 * eyeSizeFactor);
+fill(0);
+ellipse(20, -20, 10 * eyeSizeFactor, 10 * eyeSizeFactor);
 
-    fill(eyeHue, eyeSaturation, eyeBrightness);
-    ellipse(20, -20, 20, 20);
-    fill(0);
-    ellipse(20, -20, 10, 10);
-
-    fill(eyeHue, eyeSaturation, eyeBrightness);
-    ellipse(-35, -15, 15, 15);
-    fill(0);
-    ellipse(-35, -15, 6, 6);
+fill(eyeColorR, eyeColorG, eyeColorB);
+ellipse(-35, -15, 15 * eyeSizeFactor, 15 * eyeSizeFactor);
+fill(0);
+ellipse(-35, -15, 6 * eyeSizeFactor, 6 * eyeSizeFactor);
 }
