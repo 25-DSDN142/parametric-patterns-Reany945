@@ -1,19 +1,19 @@
-let Role = 110;// Size of the character
-let lineThickness = 4;// Thickness of the lines
+let Role = 80;// Size of the character
+let lineThickness = 2;// Thickness of the lines
         
 let mainColorR = 150;   
-let mainColorG = 180;
+let mainColorG = 200;
 let mainColorB = 255;
 
-let densityFactor = 1.8; // Density of the pattern, 1.0 for high density
+let densityFactor = 1.0; // Density of the pattern, 1.0 for high density
 
 let eyeColorR = 255;
 let eyeColorG = 255;
 let eyeColorB = 255;
 
-let mouthColorR = 100;
-let mouthColorG = 255;
-let mouthColorB = 100;
+let mouthColorR = 255;
+let mouthColorG = 0;
+let mouthColorB = 0;
 
 let backgroundColorR = 50;
 let backgroundColorG = 76;
@@ -22,7 +22,7 @@ let backgroundColorB = 168;
 let characterStyle = 0; // 0 for arc mouth, 1 for rectangle mouth, 
 
 let earScaleFactor = 1.0;
-let eyeSizeFactor = 1.8;
+let eyeSizeFactor = 2.0;
 
 function setup() {
 createCanvas(2000, 1000);
