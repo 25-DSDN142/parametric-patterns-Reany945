@@ -69,9 +69,9 @@ triangle(-60, 0, -100, -40 * earScaleFactor, -90, 0);
 triangle(-60, 0, -90, 20 * earScaleFactor, -90, 0);
 
 fill(mouthColorR, mouthColorG, mouthColorB);
-if (characterStyle === 0) {
+if (characterStyle == 0) {
 arc(-20, 0, 20, 20, 0, PI, CHORD);
-} else if (characterStyle === 1) {
+} else if (characterStyle == 1) {
 rectMode(CENTER);
 rect(-20, 0, 15, 5);
 } else {
